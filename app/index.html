@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golden Hour Cover Studio — GTA-style cover art from your own photos</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main class="app" id="app">
+  <aside class="controls" id="controls">
+    <header class="brand">
+      <h1 id="brand-name">Golden Hour</h1>
+      <p class="tagline">Cover Studio turns your own photos into multi-panel, GTA-style cover art — graded, lettered and exported as a PNG. Everything happens on your machine; photos are never uploaded.</p>
+    </header>
+
+    <section class="step" id="step-photos">
+      <h2>1 · Your photos</h2>
+      <label class="file-button">Add photos from this device
+        <input id="photo-input" type="file" accept="image/*" multiple>
+      </label>
+      <div class="sample-row">
+        <button id="sample-pier" type="button">Use the pier sample</button>
+        <button id="sample-boulevard" type="button">Use the boulevard sample</button>
+      </div>
+      <div id="photo-tray" class="tray" aria-label="Your photos"></div>
+      <p class="hint" id="assign-hint">Select a photo, then click a panel to place it — or span one photo across every panel for the classic one-scene collage.</p>
+      <button id="span-button" type="button">Span selected photo across all panels</button>
+      <button id="unspan-button" type="button" hidden>Back to a photo per panel</button>
+    </section>
+
+    <section class="step" id="step-look">
+      <h2>2 · Layout &amp; colour grade</h2>
+      <div id="layout-row" class="chip-row" aria-label="Panel layout"></div>
+      <div id="grade-row" class="chip-row" aria-label="Colour grade"></div>
+    </section>
+
+    <section class="step" id="step-caption">
+      <h2>3 · Caption &amp; lettering</h2>
+      <label>Title <input id="caption-input" type="text" maxlength="42" value="Sunset Heist"></label>
+      <label>Billing line <input id="billing-input" type="text" maxlength="90" value="Starring you · Shot on location · A Golden Hour production"></label>
+      <div id="title-style-row" class="chip-row" aria-label="Title style"></div>
+      <label>Title position
+        <select id="title-pos">
+          <option value="bottom" selected>Bottom</option>
+          <option value="top">Top</option>
+        </select>
+      </label>
+      <label>Title size <input id="title-size" type="range" min="70" max="140" value="100"></label>
+      <label class="check"><input id="seal-toggle" type="checkbox" checked> Studio seal</label>
+      <label class="check"><input id="billing-toggle" type="checkbox" checked> Billing line</label>
+    </section>
+
+    <section class="step" id="step-crop">
+      <h2>4 · Crop the selected panel</h2>
+      <p class="hint">Click a panel on the cover to select it, drag on the cover to move its photo, scroll over the cover to zoom it.</p>
+      <label>Zoom <input id="zoom-range" type="range" min="100" max="320" value="100"></label>
+      <button id="reset-panel" type="button">Reset this panel's crop</button>
+    </section>
+
+    <section class="step" id="step-export">
+      <h2>5 · Export the cover</h2>
+      <div id="size-row" class="chip-row" aria-label="Post size"></div>
+      <button id="export-button" type="button">Export PNG · 1080 × 1080</button>
+      <p id="status" role="status"></p>
+    </section>
+  </aside>
+
+  <section class="stage" id="stage">
+    <canvas id="stage-canvas" width="1080" height="1080" aria-label="Your cover, live preview"></canvas>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
